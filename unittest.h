@@ -7,6 +7,17 @@
 #define UNIT_TEST_H
 
 #include <list>
+#include <string>
+
+#define FUNCTION_AND_NAME(fPtr) fPtr, #fPtr
+
+#define UNIT_TEST_FUNCTION(name) void name()
+
+struct TestData
+{
+    void(*test)();
+    std::string name;
+};
 
 class UnitTestGroup
 {
@@ -21,10 +32,12 @@ public:
      */
     ~UnitTestGroup();
 
-    void AddUnitTest(void(*test)());
+    void AddUnitTest(void(*test)(), const std::string& name);
+
+    void RunUnitTests();
 
 private:
-    std::list<void(*)()> tests;
+    std::list<TestData> tests;
 };
 
 #endif // UNIT_TEST_H
