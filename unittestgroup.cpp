@@ -52,6 +52,9 @@ void UnitTestGroup::RunUnitTests()
         }
     }
     std::cout << "------------------------------\n"
-              << numPassed << " of " << numTests << " tests passed\n"
+              << numPassed << " of " << numTests << " test";
+    if (numTests != 1)
+        std::cout << 's';
+    std::cout << " passed\n"
               << "------------------------------\n" << std::flush;
 }
