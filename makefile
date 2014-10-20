@@ -6,11 +6,11 @@ TARGET = libunittest.a
 .PHONY: all
 all: $(TARGET)
 
-$(TARGET): unittest.o
-	ar rcs $(TARGET) unittest.o
+$(TARGET): unittestgroup.o
+	ar rcs $(TARGET) unittestgroup.o
 
-unittest.o: unittest.cpp unittest.h
-	$(CXX) -c unittest.cpp
+unittestgroup.o: unittestgroup.cpp unittestgroup.h
+	$(CXX) -c unittestgroup.cpp
 
 .PHONY: clean
 clean:

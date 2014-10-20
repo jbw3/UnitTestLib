@@ -1,5 +1,5 @@
 /**
- * @file unittest.cpp
+ * @file unittestgroup.cpp
  * @author John Wilkes
  */
 
