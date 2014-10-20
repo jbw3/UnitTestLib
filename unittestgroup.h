@@ -8,10 +8,11 @@
 
 #include <list>
 #include <string>
+#include <sstream>
 
 struct TestData
 {
-    void(*test)(bool&);
+    void(*test)(bool&, std::string&);
     std::string name;
 };
 
@@ -28,7 +29,7 @@ public:
      */
     ~UnitTestGroup();
 
-    void AddUnitTest(void(*test)(bool&), const std::string& name);
+    void AddUnitTest(void(*test)(bool&, std::string&), const std::string& name);
 
     void RunUnitTests();
 

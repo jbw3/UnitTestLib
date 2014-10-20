@@ -7,15 +7,17 @@
 
 #define FUNCTION_AND_NAME(fPtr) fPtr, #fPtr
 
-#define UNIT_TEST_FUNCTION(name) void name(bool& passed)
+#define UNIT_TEST_FUNCTION(name) void name(bool& _passed, std::string& _errorStr)
 
 // ----- EXPECT -----
 
 #define EXPECT_BLOCK(eval, errorMsg) \
     if (!(eval)) \
     { \
-        passed = false; \
-        std::cout << "Failed: line " << __LINE__ << ": " << errorMsg << std::endl; \
+        _passed = false; \
+        std::stringstream ss; \
+        ss << "Line " << __LINE__ << ": " << errorMsg << '\n'; \
+        _errorStr += ss.str(); \
     }
 
 #define EXPECT_TRUE(a) EXPECT_BLOCK(a, "expression is false")
@@ -31,8 +33,10 @@
 #define ASSERT_BLOCK(eval, errorMsg) \
     if (!(eval)) \
     { \
-    	passed = false; \
-    	std::cout << "Failed: line " << __LINE__ << ": " << errorMsg << std::endl; \
+    	_passed = false; \
+    	std::stringstream ss; \
+    	ss << "Line " << __LINE__ << ": " << errorMsg << '\n'; \
+    	_errorStr += ss.str(); \
     	return; \
     }
 
