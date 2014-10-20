@@ -13,19 +13,20 @@
 
 #define UNIT_TEST_FUNCTION(name) void name(bool& passed)
 
-#define EXPECT_EQ(a, b) \
-    if ( !((a) == (b)) ) \
+#define EXPECT_BLOCK(eval, errorMsg) \
+    if (!(eval)) \
     { \
         passed = false; \
-        std::cout << (a) << " != " << (b) << std::endl; \
+        std::cout << "Failed: line " << __LINE__ << ": " << errorMsg << std::endl; \
     }
 
-#define EXPECT_NEQ(a, b) \
-    if ( !((a) != (b)) ) \
-    { \
-        passed = false; \
-        std::cout << (a) << " == " << (b) << std::endl; \
-    }
+#define EXPECT_TRUE(a) EXPECT_BLOCK(a, "expression is false")
+
+#define EXPECT_FALSE(a) EXPECT_BLOCK(!(a), "expression is true")
+
+#define EXPECT_EQ(a, b) EXPECT_BLOCK((a) == (b), (a) << " != " << (b))
+
+#define EXPECT_NEQ(a, b) EXPECT_BLOCK((a) != (b), (a) << " == " << (b))
 
 struct TestData
 {
