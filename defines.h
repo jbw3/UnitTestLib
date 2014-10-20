@@ -20,13 +20,13 @@
         _errorStr += ss.str(); \
     }
 
-#define EXPECT_TRUE(a) EXPECT_BLOCK(a, "expression is false")
+#define EXPECT_TRUE(a) EXPECT_BLOCK(a, #a << " is false")
 
-#define EXPECT_FALSE(a) EXPECT_BLOCK(!(a), "expression is true")
+#define EXPECT_FALSE(a) EXPECT_BLOCK(!(a), #a << " is true")
 
-#define EXPECT_EQ(a, b) EXPECT_BLOCK((a) == (b), (a) << " != " << (b))
+#define EXPECT_EQ(a, b) EXPECT_BLOCK((a) == (b), #a << " != " << #b << " (" << (a) << " != " << (b) << ")")
 
-#define EXPECT_NEQ(a, b) EXPECT_BLOCK((a) != (b), (a) << " == " << (b))
+#define EXPECT_NEQ(a, b) EXPECT_BLOCK((a) != (b), #a << " == " << #b << " (" << (a) << " == " << (b) << ")")
 
 // ----- ASSERT -----
 
@@ -40,12 +40,12 @@
     	return; \
     }
 
-#define ASSERT_TRUE(a) ASSERT_BLOCK(a, "expression is false")
+#define ASSERT_TRUE(a) ASSERT_BLOCK(a, #a << " is false")
 
-#define ASSERT_FALSE(a) ASSERT_BLOCK(!(a), "expression is true")
+#define ASSERT_FALSE(a) ASSERT_BLOCK(!(a), #a << " is true")
 
-#define ASSERT_EQ(a, b) ASSERT_BLOCK((a) == (b), (a) << " != " << (b))
+#define ASSERT_EQ(a, b) ASSERT_BLOCK((a) == (b),  #a << " != " << #b << " (" << (a) << " != " << (b) << ")")
 
-#define ASSERT_NEQ(a, b) ASSERT_BLOCK((a) != (b), (a) << " == " << (b))
+#define ASSERT_NEQ(a, b) ASSERT_BLOCK((a) != (b),  #a << " == " << #b << " (" << (a) << " == " << (b) << ")")
 
 #endif // UNIT_TEST_DEFINES_H
