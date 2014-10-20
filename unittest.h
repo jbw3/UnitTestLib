@@ -11,11 +11,25 @@
 
 #define FUNCTION_AND_NAME(fPtr) fPtr, #fPtr
 
-#define UNIT_TEST_FUNCTION(name) void name()
+#define UNIT_TEST_FUNCTION(name) void name(bool& passed)
+
+#define EXPECT_EQ(a, b) \
+    if ( !((a) == (b)) ) \
+    { \
+        passed = false; \
+        std::cout << (a) << " != " << (b) << std::endl; \
+    }
+
+#define EXPECT_NEQ(a, b) \
+    if ( !((a) != (b)) ) \
+    { \
+        passed = false; \
+        std::cout << (a) << " == " << (b) << std::endl; \
+    }
 
 struct TestData
 {
-    void(*test)();
+    void(*test)(bool&);
     std::string name;
 };
 
@@ -32,7 +46,7 @@ public:
      */
     ~UnitTestGroup();
 
-    void AddUnitTest(void(*test)(), const std::string& name);
+    void AddUnitTest(void(*test)(bool&), const std::string& name);
 
     void RunUnitTests();
 
