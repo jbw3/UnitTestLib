@@ -1,5 +1,21 @@
 /**
  * @brief defines.h
+ * @author John Wilkes
+ *
+ * @todo
+ * - Add EXPECT_GE
+ * - Add EXPECT_LE
+ * - Add EXPECT_CSTR_EQ
+ * - Add EXPECT_CSTR_NE
+ * - Add EXPECT_THROW
+ * - Add EXPECT_NO_THROW
+ * - Add ASSERT_GE
+ * - Add ASSERT_LE
+ * - Add ASSERT_CSTR_EQ
+ * - Add ASSERT_CSTR_NE
+ * - Add ASSERT_THROW
+ * - Add ASSERT_NO_THROW
+ * - Add FAIL_TEST
  */
 
 #ifndef UNIT_TEST_DEFINES_H

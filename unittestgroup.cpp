@@ -22,6 +22,7 @@ void UnitTestGroup::AddUnitTest(void(*test)(bool&, std::string&), const std::str
     tests.push_back(data);
 }
 
+/// @todo Catch and report exceptions
 void UnitTestGroup::RunUnitTests()
 {
     bool passed;
