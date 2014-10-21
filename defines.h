@@ -11,7 +11,6 @@
  * - Add ASSERT_CSTR_NE
  * - Add ASSERT_THROW
  * - Add ASSERT_NO_THROW
- * - Add FAIL_TEST
  */
 
 #ifndef UNIT_TEST_DEFINES_H
@@ -20,6 +19,13 @@
 #define FUNCTION_AND_NAME(fPtr) fPtr, #fPtr
 
 #define UNIT_TEST_FUNCTION(name) void name(bool& _passed, std::string& _errorStr)
+
+#define FAIL_TEST(errorMsg) \
+    _passed = false; \
+    std::stringstream ss; \
+    ss << "Line " << __LINE__ << ": " << errorMsg << '\n'; \
+    _errorStr += ss.str(); \
+    return;
 
 // ----- EXPECT -----
 
