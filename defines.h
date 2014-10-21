@@ -26,7 +26,11 @@
 
 #define EXPECT_EQ(a, b) EXPECT_BLOCK((a) == (b), #a << " != " << #b << " (" << (a) << " != " << (b) << ")")
 
-#define EXPECT_NEQ(a, b) EXPECT_BLOCK((a) != (b), #a << " == " << #b << " (" << (a) << " == " << (b) << ")")
+#define EXPECT_NE(a, b) EXPECT_BLOCK((a) != (b), #a << " == " << #b << " (" << (a) << " == " << (b) << ")")
+
+#define EXPECT_LT(a, b) EXPECT_BLOCK((a) < (b), #a << " >= " << #b << " (" << (a) << " >= " << (b) << ")")
+
+#define EXPECT_GT(a, b) EXPECT_BLOCK((a) > (b), #a << " <= " << #b << " (" << (a) << " <= " << (b) << ")")
 
 // ----- ASSERT -----
 
@@ -46,6 +50,10 @@
 
 #define ASSERT_EQ(a, b) ASSERT_BLOCK((a) == (b),  #a << " != " << #b << " (" << (a) << " != " << (b) << ")")
 
-#define ASSERT_NEQ(a, b) ASSERT_BLOCK((a) != (b),  #a << " == " << #b << " (" << (a) << " == " << (b) << ")")
+#define ASSERT_NE(a, b) ASSERT_BLOCK((a) != (b),  #a << " == " << #b << " (" << (a) << " == " << (b) << ")")
+
+#define ASSERT_LT(a, b) ASSERT_BLOCK((a) < (b), #a << " >= " << #b << " (" << (a) << " >= " << (b) << ")")
+
+#define ASSERT_GT(a, b) ASSERT_BLOCK((a) > (b), #a << " <= " << #b << " (" << (a) << " <= " << (b) << ")")
 
 #endif // UNIT_TEST_DEFINES_H
