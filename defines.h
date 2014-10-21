@@ -3,14 +3,10 @@
  * @author John Wilkes
  *
  * @todo
- * - Add EXPECT_GE
- * - Add EXPECT_LE
  * - Add EXPECT_CSTR_EQ
  * - Add EXPECT_CSTR_NE
  * - Add EXPECT_THROW
  * - Add EXPECT_NO_THROW
- * - Add ASSERT_GE
- * - Add ASSERT_LE
  * - Add ASSERT_CSTR_EQ
  * - Add ASSERT_CSTR_NE
  * - Add ASSERT_THROW
@@ -46,7 +42,11 @@
 
 #define EXPECT_LT(a, b) EXPECT_BLOCK((a) < (b), #a << " >= " << #b << " (" << (a) << " >= " << (b) << ")")
 
+#define EXPECT_LE(a, b) EXPECT_BLOCK((a) <= (b), #a << " > " << #b << " (" << (a) << " > " << (b) << ")")
+
 #define EXPECT_GT(a, b) EXPECT_BLOCK((a) > (b), #a << " <= " << #b << " (" << (a) << " <= " << (b) << ")")
+
+#define EXPECT_GE(a, b) EXPECT_BLOCK((a) >= (b), #a << " < " << #b << " (" << (a) << " < " << (b) << ")")
 
 // ----- ASSERT -----
 
@@ -70,6 +70,10 @@
 
 #define ASSERT_LT(a, b) ASSERT_BLOCK((a) < (b), #a << " >= " << #b << " (" << (a) << " >= " << (b) << ")")
 
+#define ASSERT_LE(a, b) ASSERT_BLOCK((a) <= (b), #a << " > " << #b << " (" << (a) << " > " << (b) << ")")
+
 #define ASSERT_GT(a, b) ASSERT_BLOCK((a) > (b), #a << " <= " << #b << " (" << (a) << " <= " << (b) << ")")
+
+#define ASSERT_GE(a, b) ASSERT_BLOCK((a) >= (b), #a << " < " << #b << " (" << (a) << " < " << (b) << ")")
 
 #endif // UNIT_TEST_DEFINES_H
