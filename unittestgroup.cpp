@@ -22,7 +22,6 @@ void UnitTestGroup::AddUnitTest(void(*test)(bool&, std::string&), const std::str
     tests.push_back(data);
 }
 
-/// @todo Catch and report exceptions
 void UnitTestGroup::RunUnitTests()
 {
     bool passed;
@@ -40,7 +39,23 @@ void UnitTestGroup::RunUnitTests()
     {
         passed = true;
         errorStr = "";
-        (iter->test)(passed, errorStr);
+        try
+        {
+            (iter->test)(passed, errorStr);
+        }
+        catch (const std::exception& e)
+        {
+            passed = false;
+            errorStr += "Caught std::exception: ";
+            errorStr += e.what();
+            errorStr += "\n";
+        }
+        catch (...)
+        {
+            passed = false;
+            errorStr += "Caught exception\n";
+        }
+
         if (passed)
         {
             ++numPassed;
