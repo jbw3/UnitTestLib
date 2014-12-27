@@ -3,12 +3,8 @@
  * @author John Wilkes
  *
  * @todo
- * - Add EXPECT_CSTR_EQ
- * - Add EXPECT_CSTR_NE
  * - Add EXPECT_THROW
  * - Add EXPECT_NO_THROW
- * - Add ASSERT_CSTR_EQ
- * - Add ASSERT_CSTR_NE
  * - Add ASSERT_THROW
  * - Add ASSERT_NO_THROW
  */
@@ -16,16 +12,20 @@
 #ifndef UNIT_TEST_DEFINES_H
 #define UNIT_TEST_DEFINES_H
 
+#include <cstring>
+
 #define FUNCTION_AND_NAME(fPtr) fPtr, #fPtr
 
 #define UNIT_TEST_FUNCTION(name) void name(bool& _passed, std::string& _errorStr)
 
 #define FAIL_TEST(errorMsg) \
-    _passed = false; \
-    std::stringstream ss; \
-    ss << "Line " << __LINE__ << ": " << errorMsg << '\n'; \
-    _errorStr += ss.str(); \
-    return;
+    { \
+        _passed = false; \
+        std::stringstream ss; \
+        ss << "Line " << __LINE__ << ": " << errorMsg << '\n'; \
+        _errorStr += ss.str(); \
+        return; \
+    }
 
 // ----- EXPECT -----
 
@@ -54,6 +54,10 @@
 
 #define EXPECT_GE(a, b) EXPECT_BLOCK((a) >= (b), #a << " < " << #b << " (" << (a) << " < " << (b) << ")")
 
+#define EXPECT_CSTR_EQ(a, b) EXPECT_BLOCK(strcmp(a, b) == 0, '"' << a << "\" != \"" << b << '"')
+
+#define EXPECT_CSTR_NE(a, b) EXPECT_BLOCK(strcmp(a, b) != 0, '"' << a << "\" == \"" << b << '"')
+
 // ----- ASSERT -----
 
 #define ASSERT_BLOCK(eval, errorMsg) \
@@ -81,5 +85,9 @@
 #define ASSERT_GT(a, b) ASSERT_BLOCK((a) > (b), #a << " <= " << #b << " (" << (a) << " <= " << (b) << ")")
 
 #define ASSERT_GE(a, b) ASSERT_BLOCK((a) >= (b), #a << " < " << #b << " (" << (a) << " < " << (b) << ")")
+
+#define ASSERT_CSTR_EQ(a, b) ASSERT_BLOCK(strcmp(a, b) == 0, '"' << a << "\" != \"" << b << '"')
+
+#define ASSERT_CSTR_NE(a, b) ASSERT_BLOCK(strcmp(a, b) != 0, '"' << a << "\" == \"" << b << '"')
 
 #endif // UNIT_TEST_DEFINES_H
