@@ -16,14 +16,14 @@
 
 #define FUNCTION_AND_NAME(fPtr) fPtr, #fPtr
 
-#define UNIT_TEST_FUNCTION(name) void name(bool& _passed, std::string& _errorStr)
+#define UNIT_TEST_FUNCTION(name) void name(bool& passed__, std::string& errorStr__)
 
 #define FAIL_TEST(errorMsg) \
     { \
-        _passed = false; \
-        std::stringstream ss; \
-        ss << "Line " << __LINE__ << ": " << errorMsg << '\n'; \
-        _errorStr += ss.str(); \
+        passed__ = false; \
+        std::stringstream error_ss__; \
+        error_ss__ << "Line " << __LINE__ << ": " << errorMsg << '\n'; \
+        errorStr__ += error_ss__.str(); \
         return; \
     }
 
@@ -32,10 +32,10 @@
 #define EXPECT_BLOCK(eval, errorMsg) \
     if (!(eval)) \
     { \
-        _passed = false; \
-        std::stringstream ss; \
-        ss << "Line " << __LINE__ << ": " << errorMsg << '\n'; \
-        _errorStr += ss.str(); \
+        passed__ = false; \
+        std::stringstream error_ss__; \
+        error_ss__ << "Line " << __LINE__ << ": " << errorMsg << '\n'; \
+        errorStr__ += error_ss__.str(); \
     }
 
 #define EXPECT_TRUE(a) EXPECT_BLOCK(a, #a << " is false")
@@ -63,10 +63,10 @@
 #define ASSERT_BLOCK(eval, errorMsg) \
     if (!(eval)) \
     { \
-    	_passed = false; \
-    	std::stringstream ss; \
-    	ss << "Line " << __LINE__ << ": " << errorMsg << '\n'; \
-    	_errorStr += ss.str(); \
+    	passed__ = false; \
+    	std::stringstream error_ss__; \
+    	error_ss__ << "Line " << __LINE__ << ": " << errorMsg << '\n'; \
+    	errorStr__ += error_ss__.str(); \
     	return; \
     }
 
